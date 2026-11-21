@@ -1,0 +1,72 @@
+# =====================================================================
+# 生产 profile：MySQL 8 + Redis + 真实模型/微信（可选）
+# 启动：java -jar business-suite-backend.jar --spring.profiles.active=prod
+# 所有敏感项均通过环境变量注入，仓库里不放任何真实密钥
+# =====================================================================
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:127.0.0.1}:${DB_PORT:3306}/${DB_NAME:business_suite}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+    username: ${DB_USERNAME:suite}
+    password: ${DB_PASSWORD:change-me}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  sql:
+    init:
+      # 生产表结构由 db/schema.sql + db/data.sql 通过发布流程执行，不交给应用启动时做
+      mode: never
+
+mybatis-plus:
+  configuration:
+    # 生产关闭 SQL 明细日志，只保留慢查询与错误
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+
+logging:
+  level:
+    root: INFO
+    com.painuo.suite: INFO
+  file:
+    name: ./logs/business-suite.log
+  logback:
+    rollingpolicy:
+      max-file-size: 50MB
+      max-history: 14
+      total-size-cap: 2GB
+
+app:
+  jwt:
+    # 生产必须覆盖，否则启动失败（secret 长度不足 32 字节会直接抛异常）
+    secret: ${APP_JWT_SECRET}
+  cache:
+    type: ${APP_CACHE_TYPE:redis}
+    redis-uri: ${APP_REDIS_URI:redis://127.0.0.1:6379}
+    default-ttl-seconds: 300
+    null-value-ttl-seconds: 60
+    ttl-jitter-ratio: 0.2
+  ai:
+    provider: ${APP_AI_PROVIDER:mock}
+    base-url: ${APP_AI_BASE_URL:https://api.openai.com/v1}
+    api-key: ${APP_AI_API_KEY:}
+    model: ${APP_AI_MODEL:gpt-4o-mini}
+    timeout-seconds: 20
+    max-context-items: 5
+    temperature: 0.3
+  storage:
+    type: ${APP_STORAGE_TYPE:local}
+    local-root: ${APP_STORAGE_LOCAL_ROOT:/data/suite/uploads}
+    public-base-url: ${APP_STORAGE_PUBLIC_BASE_URL:https://api.example.com/uploads}
+    endpoint: ${APP_STORAGE_ENDPOINT:}
+    bucket: ${APP_STORAGE_BUCKET:}
+    access-key-id: ${APP_STORAGE_ACCESS_KEY_ID:}
+    access-key-secret: ${APP_STORAGE_ACCESS_KEY_SECRET:}
+  wechat:
+    app-id: ${APP_WECHAT_APP_ID:}
+    app-secret: ${APP_WECHAT_APP_SECRET:}
+    # 生产配好 appId/appSecret 后必须改成 false，否则会用 mock openid 建号
+    mock: ${APP_WECHAT_MOCK:false}
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:https://admin.example.com}

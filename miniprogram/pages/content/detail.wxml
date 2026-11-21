@@ -1,0 +1,37 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="container">
+    <view class="card">
+      <view class="skeleton skeleton-title"></view>
+      <view class="skeleton skeleton-line"></view>
+      <view class="skeleton skeleton-line"></view>
+      <view class="skeleton skeleton-line short"></view>
+    </view>
+  </view>
+
+  <view wx:elif="{{errorText}}" class="container">
+    <view class="card error-box">
+      <view class="muted">{{errorText}}</view>
+      <view class="row error-actions">
+        <view class="retry" bindtap="onRetry">重新加载</view>
+        <view class="retry" bindtap="onBackHome">返回首页</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="container">
+    <view class="card">
+      <view class="title">{{content.title}}</view>
+      <view class="meta muted">{{metaText}} · {{viewText}}</view>
+      <view class="divider"></view>
+      <rich-text class="body" nodes="{{content.body}}"></rich-text>
+      <view class="tags" wx:if="{{tags.length}}">
+        <text class="tag tag-item" wx:for="{{tags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+
+    <view class="card actions">
+      <button class="share-btn" open-type="share">分享给好友</button>
+      <view class="source muted">来源：数海观澜 · 内容中台</view>
+    </view>
+  </view>
+</view>

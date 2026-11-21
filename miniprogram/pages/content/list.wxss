@@ -1,0 +1,109 @@
+.page {
+  min-height: 100vh;
+  background: var(--suite-bg);
+}
+
+.toolbar {
+  background: #fff;
+  padding: 20rpx 24rpx 8rpx;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4rpx 16rpx rgba(31, 39, 64, 0.04);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background: #f4f6fb;
+  border-radius: 999rpx;
+  padding: 8rpx 8rpx 8rpx 26rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 27rpx;
+  color: #1f2740;
+}
+
+.search-ph {
+  color: #b3b8c6;
+}
+
+.search-btn {
+  background: var(--suite-primary);
+  color: #fff;
+  font-size: 26rpx;
+  padding: 12rpx 28rpx;
+  border-radius: 999rpx;
+}
+
+.tabs {
+  margin-top: 18rpx;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.tab {
+  display: inline-block;
+  padding: 12rpx 26rpx;
+  margin-right: 12rpx;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  color: #5c6478;
+  background: #f4f6fb;
+}
+
+.tab-active {
+  background: rgba(47, 107, 255, 0.1);
+  color: var(--suite-primary);
+  font-weight: 600;
+}
+
+.list-total {
+  margin: 4rpx 4rpx 16rpx;
+}
+
+.content-item {
+  padding: 26rpx;
+}
+
+.content-head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.tag-top {
+  background: rgba(247, 144, 9, 0.14);
+  color: #b54708;
+  margin-right: 12rpx;
+}
+
+.content-title {
+  font-size: 31rpx;
+  font-weight: 600;
+  color: #1f2740;
+  line-height: 44rpx;
+}
+
+.content-summary {
+  margin-top: 10rpx;
+  line-height: 38rpx;
+}
+
+.content-meta {
+  margin-top: 16rpx;
+}
+
+.error-box {
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.retry {
+  display: inline-block;
+  margin-top: 16rpx;
+  color: var(--suite-primary);
+  font-size: 26rpx;
+}

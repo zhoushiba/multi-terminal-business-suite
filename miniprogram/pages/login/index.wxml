@@ -1,0 +1,34 @@
+<view class="login">
+  <view class="brand">
+    <view class="brand-logo">中</view>
+    <view class="brand-title">数海观澜</view>
+    <view class="brand-sub">多端业务中台 · 微信小程序端</view>
+    <view class="brand-tags">
+      <text class="brand-tag">文旅资讯</text>
+      <text class="brand-tag">活动报名</text>
+      <text class="brand-tag">遥感点位</text>
+    </view>
+  </view>
+
+  <view class="panel">
+    <view class="panel-title">欢迎使用</view>
+    <view class="panel-desc">登录后可查看活动报名记录与个人中心信息</view>
+
+    <button class="btn-wechat" hover-class="btn-hover" loading="{{loading}}" bindtap="handleLogin">
+      微信一键登录
+    </button>
+    <button class="btn-demo" hover-class="btn-hover" disabled="{{loading}}" bindtap="handleDemo">
+      使用演示账号体验
+    </button>
+
+    <view class="tips">
+      <view class="tip">· 开发者工具需在「详情 → 本地设置」勾选「不校验合法域名」</view>
+      <view class="tip">· 演示模式由后端 app.wechat.mock 控制，无需真实 AppID</view>
+      <view class="tip">· 登录接口：POST /api/wx/login</view>
+    </view>
+
+    <view class="back" wx:if="{{isLogin}}" bindtap="onBack">
+      已登录为 {{nickname}}，返回上一页
+    </view>
+  </view>
+</view>

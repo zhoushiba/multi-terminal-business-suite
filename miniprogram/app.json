@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/content/list",
+    "pages/content/detail",
+    "pages/mine/index",
+    "pages/login/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1f2740",
+    "navigationBarTitleText": "数海观澜 · 文旅与遥感服务",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f4f6fb",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#8a90a2",
+    "selectedColor": "#2f6bff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/content/list",
+        "text": "资讯"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于展示附近的景区与服务设施点位"
+    }
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

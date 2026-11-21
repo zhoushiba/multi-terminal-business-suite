@@ -1,0 +1,38 @@
+# =====================================================================
+# 本地开发 profile：H2 文件库（MySQL 兼容模式）+ 全 Mock 外部依赖
+# 目的：没有安装 MySQL / Redis / 小程序 appId 也能完整跑通三端联调
+# =====================================================================
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    # MODE=MySQL 让 H2 接受 MySQL 方言；DATABASE_TO_LOWER 保证表名与 MySQL 一致
+    url: jdbc:h2:file:./data/suite;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: ""
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/h2/schema.sql
+      data-locations: classpath:db/h2/data.sql
+      # 建表脚本必须是幂等的（CREATE TABLE IF NOT EXISTS + MERGE），重启不会重复插数据
+      continue-on-error: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.painuo.suite: DEBUG
+
+app:
+  cache:
+    type: memory
+  ai:
+    provider: mock
+  wechat:
+    mock: true

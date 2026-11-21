@@ -1,0 +1,123 @@
+.login {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1f2740 0%, #2b3760 42%, #f4f6fb 42%, #f4f6fb 100%);
+  padding: 60rpx 40rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.brand {
+  padding: 20rpx 20rpx 80rpx;
+  color: #fff;
+}
+
+.brand-logo {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(135deg, #4f8bff, #7b61ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 28rpx;
+}
+
+.brand-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.brand-sub {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.brand-tags {
+  margin-top: 28rpx;
+  display: flex;
+}
+
+.brand-tag {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.86);
+  border: 1rpx solid rgba(255, 255, 255, 0.32);
+  border-radius: 999rpx;
+  padding: 8rpx 20rpx;
+  margin-right: 16rpx;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 44rpx 36rpx;
+  box-shadow: 0 18rpx 50rpx rgba(20, 28, 56, 0.12);
+}
+
+.panel-title {
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #1f2740;
+}
+
+.panel-desc {
+  margin: 12rpx 0 36rpx;
+  font-size: 26rpx;
+  color: #8a90a2;
+}
+
+.btn-wechat {
+  height: 92rpx;
+  line-height: 92rpx;
+  border-radius: 46rpx;
+  background: linear-gradient(135deg, #4f8bff, #2f6bff);
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border: none;
+}
+
+.btn-wechat::after {
+  border: none;
+}
+
+.btn-demo {
+  margin-top: 22rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  border-radius: 46rpx;
+  background: #f4f6fb;
+  color: #2f6bff;
+  font-size: 30rpx;
+  border: 1rpx solid #dfe6ff;
+}
+
+.btn-demo::after {
+  border: none;
+}
+
+.btn-hover {
+  opacity: 0.86;
+}
+
+.tips {
+  margin-top: 40rpx;
+  padding-top: 28rpx;
+  border-top: 1rpx solid #eef1f7;
+}
+
+.tip {
+  font-size: 22rpx;
+  color: #9aa1b3;
+  line-height: 40rpx;
+}
+
+.back {
+  margin-top: 28rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #2f6bff;
+}

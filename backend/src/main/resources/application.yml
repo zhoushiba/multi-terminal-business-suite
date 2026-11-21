@@ -1,0 +1,103 @@
+# =====================================================================
+# 数字内容与数据服务业务中台 —— 公共配置
+#
+# 默认激活 local（H2 文件库 + Mock AI），开箱即可跑：
+#   mvn spring-boot:run
+# 生产部署改用：
+#   java -jar app.jar --spring.profiles.active=prod
+# 单测使用 test profile（H2 内存库），见 src/test/resources/application-test.yml
+# =====================================================================
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+
+spring:
+  application:
+    name: business-suite-backend
+  profiles:
+    # 没有显式指定 profile 时走 local，保证 clone 下来就能启动
+    default: local
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      write-dates-as-timestamps: false
+      fail-on-empty-beans: false
+    deserialization:
+      fail-on-unknown-properties: false
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 25MB
+  web:
+    resources:
+      # 关掉默认静态资源打包扫描，上传目录由 WebMvcConfig 单独映射
+      add-mappings: true
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 开发期把 SQL 打出来，生产在 prod profile 里关掉
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+logging:
+  level:
+    root: INFO
+    com.painuo.suite: INFO
+  pattern:
+    # traceId 来自 TraceIdFilter 写入的 MDC，排查线上问题时可直接按它检索全链路日志
+    console: "%d{HH:mm:ss.SSS} %-5level [%X{traceId:-no-trace}] %logger{40} - %msg%n"
+
+app:
+  jwt:
+    # 本地默认值，生产必须用环境变量覆盖（≥32 字节，否则应用启动即失败）
+    secret: ${APP_JWT_SECRET:local-dev-only-secret-key-please-change-me-32b}
+    access-token-seconds: 7200
+    refresh-token-seconds: 604800
+    issuer: business-suite
+  cache:
+    type: ${APP_CACHE_TYPE:memory}
+    key-prefix: "app:cache:"
+    # 热点内容默认缓存 5 分钟，空值缓存 60 秒（防穿透同时避免脏数据长期占位）
+    default-ttl-seconds: 300
+    null-value-ttl-seconds: 60
+    # TTL 抖动比例，防雪崩：实际 TTL = base * (1 ± ratio * random)
+    ttl-jitter-ratio: 0.2
+    redis-uri: ${APP_REDIS_URI:redis://127.0.0.1:6379}
+  ai:
+    # mock 完全离线；openai 时读取 base-url/api-key
+    provider: ${APP_AI_PROVIDER:mock}
+    base-url: ${APP_AI_BASE_URL:https://api.openai.com/v1}
+    api-key: ${APP_AI_API_KEY:}
+    model: ${APP_AI_MODEL:gpt-4o-mini}
+    timeout-seconds: 20
+    max-context-items: 5
+    temperature: 0.3
+  storage:
+    type: ${APP_STORAGE_TYPE:local}
+    local-root: ${APP_STORAGE_LOCAL_ROOT:./data/uploads}
+    public-base-url: ${APP_STORAGE_PUBLIC_BASE_URL:http://localhost:8080/uploads}
+    endpoint: ${APP_STORAGE_ENDPOINT:}
+    bucket: ${APP_STORAGE_BUCKET:}
+    access-key-id: ${APP_STORAGE_ACCESS_KEY_ID:}
+    access-key-secret: ${APP_STORAGE_ACCESS_KEY_SECRET:}
+  wechat:
+    # 没有小程序 appId 时保持 mock=true，code2session 会返回可预测的 openid
+    app-id: ${APP_WECHAT_APP_ID:}
+    app-secret: ${APP_WECHAT_APP_SECRET:}
+    mock: ${APP_WECHAT_MOCK:true}
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173}

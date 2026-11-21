@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "资讯列表",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 80,
+  "usingComponents": {}
+}

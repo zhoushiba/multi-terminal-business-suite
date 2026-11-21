@@ -1,0 +1,118 @@
+/* 全局样式：与 web 端保持同一套视觉语言（深色品牌 + 亮色内容卡） */
+page {
+  --suite-primary: #2f6bff;
+  --suite-bg: #f4f6fb;
+  --suite-card: #ffffff;
+  --suite-border: #e9ecf3;
+  --suite-text: #1f2740;
+  --suite-text-secondary: #8a90a2;
+  --suite-radius: 16rpx;
+  background: var(--suite-bg);
+  color: var(--suite-text);
+  font-size: 28rpx;
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.card {
+  background: var(--suite-card);
+  border-radius: var(--suite-radius);
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(31, 39, 64, 0.05);
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.muted {
+  color: var(--suite-text-secondary);
+  font-size: 24rpx;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  background: rgba(47, 107, 255, 0.08);
+  color: var(--suite-primary);
+}
+
+.tag-success {
+  background: rgba(18, 183, 106, 0.1);
+  color: #12b76a;
+}
+
+.tag-warning {
+  background: rgba(247, 144, 9, 0.12);
+  color: #b54708;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  border-radius: 44rpx;
+  background: linear-gradient(135deg, #4f8bff, #2f6bff);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.btn-primary.disabled {
+  opacity: 0.5;
+}
+
+.divider {
+  height: 1rpx;
+  background: var(--suite-border);
+  margin: 20rpx 0;
+}
+
+/* 空态与加载态 */
+.empty {
+  padding: 90rpx 0;
+  text-align: center;
+  color: var(--suite-text-secondary);
+  font-size: 26rpx;
+}
+
+.loading-text {
+  text-align: center;
+  padding: 36rpx 0;
+  color: var(--suite-text-secondary);
+  font-size: 24rpx;
+}

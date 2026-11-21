@@ -1,0 +1,98 @@
+.page {
+  min-height: 100vh;
+  background: var(--suite-bg);
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1f2740;
+  line-height: 56rpx;
+}
+
+.meta {
+  margin-top: 16rpx;
+}
+
+.body {
+  font-size: 29rpx;
+  color: #333a4d;
+  line-height: 52rpx;
+  word-break: break-all;
+}
+
+.tags {
+  margin-top: 28rpx;
+}
+
+.tag-item {
+  margin-right: 12rpx;
+}
+
+.actions {
+  text-align: center;
+}
+
+.share-btn {
+  height: 84rpx;
+  line-height: 84rpx;
+  border-radius: 42rpx;
+  background: rgba(47, 107, 255, 0.08);
+  color: var(--suite-primary);
+  font-size: 29rpx;
+  border: none;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+.source {
+  margin-top: 18rpx;
+}
+
+.error-box {
+  text-align: center;
+  padding: 50rpx 20rpx;
+}
+
+.error-actions {
+  justify-content: center;
+  margin-top: 20rpx;
+}
+
+.retry {
+  color: var(--suite-primary);
+  font-size: 27rpx;
+  margin: 0 24rpx;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #eef1f7 25%, #f7f9fc 37%, #eef1f7 63%);
+  border-radius: 10rpx;
+  animation: shine 1.4s ease infinite;
+}
+
+.skeleton-title {
+  height: 52rpx;
+  width: 80%;
+  margin-bottom: 28rpx;
+}
+
+.skeleton-line {
+  height: 30rpx;
+  margin-bottom: 22rpx;
+}
+
+.skeleton-line.short {
+  width: 55%;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -300rpx 0;
+  }
+  100% {
+    background-position: 300rpx 0;
+  }
+}

@@ -1,0 +1,97 @@
+<view class="page">
+  <view class="hero">
+    <view class="row-between">
+      <view>
+        <view class="hero-title">数海观澜</view>
+        <view class="hero-sub">贵州文旅 · 遥感数据服务</view>
+      </view>
+      <view class="hero-city">{{city}}</view>
+    </view>
+    <view class="search">
+      <input
+        class="search-input"
+        placeholder="搜索文旅资讯、活动、攻略"
+        placeholder-class="search-ph"
+        value="{{keyword}}"
+        confirm-type="search"
+        bindinput="onKeywordInput"
+        bindconfirm="onSearch"
+      />
+      <view class="search-btn" bindtap="onSearch">搜索</view>
+    </view>
+  </view>
+
+  <view class="container">
+    <view class="card quick-card">
+      <view
+        class="quick-item"
+        wx:for="{{categories}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onCategoryTap"
+      >
+        <view class="quick-icon">{{item.icon}}</view>
+        <view class="quick-name">{{item.name}}</view>
+      </view>
+      <view wx:if="{{!categories.length}}" class="empty">暂无分类</view>
+    </view>
+
+    <view class="card">
+      <view class="row-between">
+        <view class="card-title">近期活动</view>
+        <view class="muted" bindtap="onMoreContent">全部资讯 ›</view>
+      </view>
+      <block wx:if="{{activities.length}}">
+        <view
+          class="activity"
+          wx:for="{{activities}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onActivityTap"
+        >
+          <view class="activity-head">
+            <view class="activity-title ellipsis">{{item.title}}</view>
+            <text class="tag {{item.signupOpen ? 'tag-success' : ''}}">{{item.signupText}}</text>
+          </view>
+          <view class="activity-desc ellipsis-2">{{item.description}}</view>
+          <view class="activity-meta muted">
+            {{item.timeText}} · {{item.regionText}} · {{item.sessionCount}} 个场次
+          </view>
+        </view>
+      </block>
+      <view wx:else class="empty">暂无进行中的活动</view>
+    </view>
+
+    <view class="card">
+      <view class="row-between">
+        <view class="card-title">精选内容</view>
+        <view class="muted" bindtap="onMoreContent">更多 ›</view>
+      </view>
+      <block wx:if="{{contents.length}}">
+        <view
+          class="content-item"
+          wx:for="{{contents}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onContentTap"
+        >
+          <view class="content-title ellipsis-2">{{item.title}}</view>
+          <view class="content-summary muted ellipsis-2">{{item.summary}}</view>
+          <view class="content-meta">
+            <text class="tag">{{item.typeText}}</text>
+            <text class="muted content-meta-text">{{item.timeText}} · {{item.viewText}}</text>
+          </view>
+        </view>
+      </block>
+      <view wx:else class="empty">暂无内容</view>
+    </view>
+
+    <view wx:if="{{loading}}" class="loading-text">正在加载…</view>
+    <view wx:if="{{errorText}}" class="error-box">
+      <view class="muted">{{errorText}}</view>
+      <view class="retry" bindtap="onRetry">重新加载</view>
+    </view>
+
+    <view class="footer muted">多端业务中台套件 · Spring Boot 3 + 微信小程序</view>
+  </view>
+</view>

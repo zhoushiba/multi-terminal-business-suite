@@ -1,0 +1,76 @@
+<view class="page">
+  <view class="profile">
+    <view class="avatar">{{avatarText}}</view>
+    <view class="profile-info">
+      <block wx:if="{{isLogin}}">
+        <view class="nickname">{{user.nickname || user.username}}</view>
+        <view class="profile-sub">{{user.username}} · {{rolesText}}</view>
+      </block>
+      <block wx:else>
+        <view class="nickname">未登录</view>
+        <view class="profile-sub">登录后可查看活动报名记录</view>
+      </block>
+    </view>
+    <view wx:if="{{!isLogin}}" class="login-btn" bindtap="onLogin">去登录</view>
+  </view>
+
+  <view class="container">
+    <view class="card stats">
+      <view class="stat">
+        <view class="stat-value">{{stats.total}}</view>
+        <view class="stat-label muted">报名总数</view>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat">
+        <view class="stat-value">{{stats.verified}}</view>
+        <view class="stat-label muted">已核销</view>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat">
+        <view class="stat-value">{{user.permissions.length || 0}}</view>
+        <view class="stat-label muted">权限点</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="row-between">
+        <view class="card-title">我的报名</view>
+        <view class="muted" bindtap="onRefresh">刷新</view>
+      </view>
+
+      <block wx:if="{{isLogin && signups.length}}">
+        <view class="signup" wx:for="{{signups}}" wx:key="id">
+          <view class="row-between">
+            <view class="signup-title ellipsis">{{item.title}}</view>
+            <text class="tag {{item.status === 2 ? 'tag-success' : 'tag-warning'}}">{{item.statusText}}</text>
+          </view>
+          <view class="signup-meta muted">{{item.sessionName}} · {{item.timeText}}</view>
+          <view class="signup-code muted">核销码：{{item.code}}</view>
+        </view>
+      </block>
+
+      <view wx:elif="{{isLogin && loading}}" class="loading-text">正在加载报名记录…</view>
+      <view wx:elif="{{isLogin}}" class="empty">还没有报名记录，去首页看看活动吧</view>
+      <view wx:else class="empty">登录后可同步显示报名记录</view>
+
+      <view wx:if="{{errorText}}" class="muted error-text">{{errorText}}</view>
+    </view>
+
+    <view class="card menu">
+      <view class="menu-item" bindtap="onAbout">
+        <text>关于本项目</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" wx:if="{{isLogin}}" bindtap="onLogout">
+        <text class="danger">退出登录</text>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" wx:else bindtap="onLogin">
+        <text>微信登录</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="footer muted">数海观澜 · 多端业务中台套件 v1.0.0</view>
+  </view>
+</view>

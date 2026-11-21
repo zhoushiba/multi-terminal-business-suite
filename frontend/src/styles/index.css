@@ -1,0 +1,152 @@
+/* =====================================================================
+ * 全局样式：只放 reset、布局骨架和跨页面复用的原子类。
+ * 组件内部样式一律写在 SFC 的 <style scoped> 里，避免互相污染。
+ * ===================================================================== */
+
+:root {
+  --suite-primary: #2f6bff;
+  --suite-bg: #f4f6fb;
+  --suite-sidebar-bg: #1f2740;
+  --suite-sidebar-active: #2f6bff;
+  --suite-text: #1f2430;
+  --suite-text-secondary: #6b7280;
+  --suite-border: #e5e8ef;
+  --suite-radius: 10px;
+  --suite-shadow: 0 2px 12px rgba(31, 39, 64, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: var(--suite-text);
+  background: var(--suite-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--suite-primary);
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9cfdb;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aeb6c6;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 页面级通用块 */
+.page {
+  padding: 18px 20px 28px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.page-header__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.page-header__desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--suite-text-secondary);
+  line-height: 1.6;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid var(--suite-border);
+  border-radius: var(--suite-radius);
+  box-shadow: var(--suite-shadow);
+}
+
+.panel + .panel {
+  margin-top: 16px;
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--suite-border);
+  font-weight: 600;
+}
+
+.panel__body {
+  padding: 16px 18px;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  background: #fff;
+  border: 1px solid var(--suite-border);
+  border-radius: var(--suite-radius);
+  box-shadow: var(--suite-shadow);
+}
+
+.filter-bar .el-input,
+.filter-bar .el-select {
+  width: 210px;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 18px 4px;
+}
+
+.text-muted {
+  color: var(--suite-text-secondary);
+}
+
+.text-mono {
+  font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.18s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

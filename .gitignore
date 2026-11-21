@@ -1,0 +1,58 @@
+# ===== 依赖与构建产物 =====
+node_modules/
+dist/
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# ===== Python（本仓库不用，保留基线） =====
+__pycache__/
+*.pyc
+.venv/
+
+# ===== 环境与密钥 =====
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# ===== 运行时数据 =====
+# H2 文件库（local profile 在 backend 工作目录下生成）
+data/
+backend/data/
+# 本地上传目录
+uploads/
+backend/uploads/
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== 日志 =====
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== 编辑器与系统 =====
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# ===== 测试与覆盖率 =====
+coverage/
+.nyc_output/
+surefire-reports/
+**/target/surefire-reports/
+
+# ===== 微信开发者工具本地配置 =====
+miniprogram/project.private.config.json
+
+# ===== 保留截图目录（docs/screenshots 需要提交） =====
+!docs/screenshots/
+!docs/screenshots/*.png
